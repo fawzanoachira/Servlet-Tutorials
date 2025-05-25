@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Registration Form</title>
+</head>
+
+<body>
+	<h1>Enter your Information</h1>
+	<form action="register" method="post" onsubmit="return myfunction()">
+		<label for="name">Name: </label>
+		<input type="text" id="name" name="name"><br>
+		
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email"><br>
+		
+		<label for="password">Password: </label>
+		<input type="password" id="password" name="password"><br>
+		
+		<label for="usertype">UserType: </label>
+		<select id="usertype" name="usertype">
+			<option value="admin">Admin</option>
+			<option value="user">User</option>
+		</select><br>
+		
+		<label for="state">State: </label>
+		<select id="state" name="state">
+			<option value="kerala">kerala</option>
+			<option value="karnataka">karnataka</option>
+			<option value="tamilnadu">tamilnadu</option>
+			<option value="goa">goa</option>
+			<option value="maharashtra">maharashtra</option>
+			<!-- Add more states as needed -->
+		</select><br> 
+		
+		<input type="submit" value="Submit">
+	</form>
+	
+	<script>
+		function myfunction() {
+			alert("Registration Successful");
+			return true;
+		}
+	</script>
+
+</body>
+
+</html>
