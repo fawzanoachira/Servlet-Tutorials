@@ -58,7 +58,7 @@ public class UserManagementImplementation implements UserManagement {
 			}
 			conn = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
 			PreparedStatement statement = conn.prepareStatement(
-					"SELECT login.id, login.email, user.name, user.state, login.usertype from login innerjoin user on login.id=user.id where email=? and password=?");
+					"SELECT login.id, login.email, user.name, user.state, login.usertype from login inner join user on login.id=user.id where email=? and password=?");
 			statement.setString(1, email);
 			statement.setString(2, password);
 			ResultSet query = statement.executeQuery();
@@ -90,7 +90,7 @@ public class UserManagementImplementation implements UserManagement {
 			}
 			conn = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
 			PreparedStatement statement = conn.prepareStatement(
-					"SELECT login.id, login.email, user.name, user.state, login.usertype from login innerjoin user on user.id=login.id");
+					"SELECT login.id, login.email, user.name, user.state, login.usertype from login inner join user on user.id=login.id");
 			ResultSet query = statement.executeQuery();
 			while (query.next()) {
 				user = new User();
@@ -105,7 +105,7 @@ public class UserManagementImplementation implements UserManagement {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return u;
 	}
 
 	@Override
