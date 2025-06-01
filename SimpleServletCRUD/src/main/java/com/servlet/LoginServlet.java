@@ -39,9 +39,9 @@ public class LoginServlet extends HttpServlet {
 					writer.println("<td>" + adminUsers.getName() + "</td>");
 					writer.println("<td>" + adminUsers.getEmail() + "</td>");
 					writer.println("<td>" + adminUsers.getState() + "</td>");
-					writer.println("<td><a href='EditServlet?id=" + adminUsers.getUserId() + "?name="
-							+ adminUsers.getName() + "?email=" + adminUsers.getEmail() + "?state="
-							+ adminUsers.getState() + "'>Edit</a> <a href='DeleteServlet?id=" + adminUsers.getUserId()
+					writer.println("<td><a href='edit?id=" + adminUsers.getUserId() + "&name="
+							+ adminUsers.getName() + "&email=" + adminUsers.getEmail() + "&state="
+							+ adminUsers.getState() + "'>Edit</a> <a href='delete?id=" + adminUsers.getUserId()
 							+ "'>Delete</a></td>");
 				}
 				writer.println("</table>");

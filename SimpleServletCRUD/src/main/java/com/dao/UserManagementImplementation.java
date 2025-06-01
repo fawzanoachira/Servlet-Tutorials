@@ -110,14 +110,58 @@ public class UserManagementImplementation implements UserManagement {
 
 	@Override
 	public boolean updateUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn = null;
+		String updateUserTable = "UPDATE user set name=?, state=? where id=?";
+		String updateLoginTable = "UPDATE login set email=? where user_id=?";
+
+		try {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			conn = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
+			PreparedStatement statement1 = conn.prepareStatement(updateUserTable);
+			PreparedStatement statement2 = conn.prepareStatement(updateLoginTable);
+
+			statement1.setString(1, user.getName());
+			statement1.setString(2, user.getState());
+			statement1.setInt(3, user.getUserId());
+			statement1.executeUpdate();
+
+			statement2.setString(1, user.getEmail());
+			statement2.setInt(2, user.getUserId());
+			int executeUpdate = statement2.executeUpdate();
+			return executeUpdate > 0;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean deleteUser(int userID) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn = null;
+		try {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			conn = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
+			PreparedStatement statement1 = conn.prepareStatement("delete from user where id=?");
+			PreparedStatement statement2 = conn.prepareStatement("delete from login where user_id=?");
+			statement1.setInt(1, userID);
+			statement1.executeUpdate();
+			statement2.setInt(1, userID);
+			int executeUpdate = statement2.executeUpdate();
+			return executeUpdate > 0;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public UserManagementImplementation() {
