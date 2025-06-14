@@ -1,0 +1,39 @@
+1. Using HttpSession
+
+    1. Create/Get Session
+
+        HttpSession session = request.getSession(); // creates new session if not exists
+        session.setAttribute("username", "john_doe"); // storing data in session
+
+    2. Access Session Data
+
+        HttpSession session = request.getSession(false); // won't create new session
+        if (session != null) {
+            String username = (String) session.getAttribute("username");
+        }
+
+    3. Invalidate Session (Logout)
+
+        session.invalidate(); // destroys session
+
+2.  Using Cookies for Session Management
+
+    1. Create and Set Cookie
+
+        Cookie cookie = new Cookie("username", "john_doe");
+        cookie.setMaxAge(60 * 30); // expires in 30 minutes
+        response.addCookie(cookie);
+
+    2.  Read Cookie
+
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("username")) {
+                    String user = c.getValue();
+                    // Use the username
+                }
+            }
+        }
+
+3. URL Rewriting
